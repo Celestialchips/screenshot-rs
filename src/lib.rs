@@ -10,7 +10,7 @@
 //! attempt to undo this by reordering the rows. Windows also uses ARGB pixels.
 
 
-#![feature(core_intrinsics, convert)]
+#![feature(core_intrinsics)]
 #![allow(unused_assignments)]
 
 extern crate libc;
@@ -195,7 +195,7 @@ mod ffi {
 		fn CGGetActiveDisplayList(max_displays: libc::uint32_t,
 	                              active_displays: *mut CGDirectDisplayID,
 	                              display_count: *mut CGDisplayCount) -> CGError;
-		fn CGDisplayCreateImage(displayID: CGDirectDisplayID) -> CGImageRef;
+		fn CGDisplayCreateImage(display_id: CGDirectDisplayID) -> CGImageRef;
 		fn CGImageRelease(image: CGImageRef);
 
 		fn CGImageGetBitsPerComponent(image: CGImageRef) -> libc::size_t;
@@ -209,8 +209,8 @@ mod ffi {
 	}
 	#[link(name = "CoreFoundation", kind = "framework")]
 	extern "C" {
-		fn CFDataGetLength (theData: CFDataRef) -> CFIndex;
-		fn CFDataGetBytePtr(theData: CFDataRef) -> *const u8;
+		fn CFDataGetLength (the_data: CFDataRef) -> CFIndex;
+		fn CFDataGetBytePtr(the_data: CFDataRef) -> *const u8;
 		fn CFRelease(cf: *const libc::c_void);
 	}
 
